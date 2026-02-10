@@ -1,0 +1,9 @@
+# Backend (Spring Boot)
+backend/target/
+
+# Frontend (React)
+frontend-react/node_modules/
+frontend-react/build/
+
+# OS
+.DS_Store
