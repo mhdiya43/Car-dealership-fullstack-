@@ -1,0 +1,6 @@
+com\example\demo\DemoApplication.class
+com\example\demo\modele\Proprietaire.class
+com\example\demo\web\VoitureController.class
+com\example\demo\modele\Voiture.class
+com\example\demo\modele\VoitureRepo.class
+com\example\demo\modele\ProprietaireRepo.class
