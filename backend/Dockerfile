@@ -17,9 +17,9 @@ WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 
 # Configuration serveur
-ENV SERVER_PORT=8081
+ENV SERVER_PORT=8080
 ENV SERVER_ADDRESS=0.0.0.0
-EXPOSE 8081
+EXPOSE 8080
 
 # Lancer l’application
 ENTRYPOINT ["java", "-jar", "app.jar"]

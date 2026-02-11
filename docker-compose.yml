@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  mariadb:
+    image: mariadb:10.11
+    container_name: mariadb-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: compagnie
+      MYSQL_USER: spring
+      MYSQL_PASSWORD: spring123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: springboot-voiture
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      MYSQL_HOST: mariadb
+      MYSQL_PORT: 3306
+    ports:
+      - "8081:8080"
+
+  frontend:
+    build: ./frontend
+    container_name: react-voiture
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"  # utile pour React en Docker sur Windows/Mac
+      
+
+volumes:
+  mariadb_data:

@@ -1,4 +1,4 @@
-# Étape 1 : builder l'application
+# Étape 1 : build React
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package*.json ./
@@ -6,8 +6,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Étape 2 : servir avec Nginx
+# Étape 2 : Nginx
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
