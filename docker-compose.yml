@@ -9,8 +9,6 @@ services:
     environment:
       MYSQL_DATABASE: compagnie
       MYSQL_USER: spring
-      MYSQL_PASSWORD: spring123
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
     ports:
