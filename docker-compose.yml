@@ -1,3 +1,4 @@
+version: "3.9"
 
 services:
 
@@ -8,15 +9,13 @@ services:
     environment:
       MYSQL_DATABASE: compagnie
       MYSQL_USER: spring
-      MYSQL_PASSWORD_FILE: /run/secrets/mysql_password
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_PASSWORD: spring123
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
-    secrets:
-      - mysql_password
-      - mysql_root_password
+
   backend:
     build: ./backend
     container_name: springboot-voiture
@@ -30,7 +29,7 @@ services:
       - "8081:8080"
 
   frontend:
-    build: ./frontend-react
+    build: ./frontend
     container_name: react-voiture
     restart: always
     depends_on:
@@ -43,8 +42,3 @@ services:
 
 volumes:
   mariadb_data:
-secrets:
-  mysql_password:
-    external: true
-  mysql_root_password:
-    external: true
